@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Demin Jeans Collection</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background: #781214;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    #carrito {
+      background: transparent;
+      border: none;
+      font-size: 24px;
+      color: white;
+      cursor: pointer;
+      position: relative;
+    }
+
+    #carrito span {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: white;
+      color: #781214;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      font-weight: bold;
+    }
+
+    .banner {
+      background: #eaeaea;
+      padding: 50px 20px;
+      text-align: center;
+    }
+
+    .banner h1 {
+      color: #781214;
+      font-size: 32px;
+    }
+
+    .productos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 20px;
+      padding: 30px 20px;
+    }
+
+    .producto {
+      background: #fff;
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+
+    .producto img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .producto button {
+      background: #781214;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      margin-top: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    #carritoModal {
+      display: none;
+      position: fixed;
+      top: 80px;
+      right: 20px;
+      width: 300px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: white;
+      border: 2px solid #781214;
+      padding: 20px;
+      border-radius: 10px;
+      z-index: 1000;
+    }
+
+    .item-carrito {
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 10px;
+    }
+
+    .eliminar {
+      color: red;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .whatsapp {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #25d366;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Logo Demin Jeans Collection">
+    <nav>
+      <a href="#">Inicio</a>
+      <a href="#">Dama</a>
+      <a href="#">Caballero</a>
+      <a href="#">Marcas</a>
+      <button id="carrito">🛒 <span id="cantidad">0</span></button>
+    </nav>
+  </header>
+
+  <div id="carritoModal"></div>
+
+  <div class="banner">
+    <h1>Bienvenido a Demin Jeans Collection</h1>
+    <p>Explora lo mejor en moda para dama y caballero</p>
+  </div>
+
+  <section class="productos">
+    <div class="producto">
+      <img src="https://via.placeholder.com/300x200" alt="Producto">
+      <h3>Jean Sherman Morgan</h3>
+      <p>$299</p>
+      <button onclick="agregarAlCarrito('Jean Sherman Morgan', 299)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="https://via.placeholder.com/300x200" alt="Producto">
+      <h3>Jean Origo Caballero</h3>
+      <p>$329</p>
+      <button onclick="agregarAlCarrito('Jean Origo Caballero', 329)">Agregar al carrito</button>
+    </div>
+    <div class="producto">
+      <img src="https://via.placeholder.com/300x200" alt="Producto">
+      <h3>Jean Polo Dama</h3>
+      <p>$289</p>
+      <button onclick="agregarAlCarrito('Jean Polo Dama', 289)">Agregar al carrito</button>
+    </div>
+  </section>
+
+  <a class="whatsapp" href="https://api.whatsapp.com/send?phone=521XXXXXXXXXX" target="_blank">
+    💬 WhatsApp
+  </a>
+
+  <footer>
+    <p>© 2025 Demin Jeans Collection - Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    let carrito = [];
+    const carritoModal = document.getElementById("carritoModal");
+    const cantidad = document.getElementById("cantidad");
+
+    function agregarAlCarrito(nombre, precio) {
+      carrito.push({ nombre, precio });
+      actualizarCarrito();
+    }
+
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      cantidad.textContent = carrito.length;
+      let html = "<h3>Carrito de compras</h3>";
+      let total = 0;
+      carrito.forEach((item, index) => {
+        html += `
+          <div class="item-carrito">
+            <span>${item.nombre}</span>
+            <span>$${item.precio}</span>
+            <span class="eliminar" onclick="eliminarDelCarrito(${index})">Eliminar</span>
+          </div>
+        `;
+        total += item.precio;
+      });
+      html += `<hr><strong>Total: $${total}</strong>`;
+      carritoModal.innerHTML = html;
+    }
+
+    document.getElementById("carrito").addEventListener("click", () => {
+      carritoModal.style.display = carritoModal.style.display === "none" ? "block" : "none";
+    });
+  </script>
+
+</body>
+</html>
