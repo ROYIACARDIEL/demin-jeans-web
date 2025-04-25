@@ -11,140 +11,130 @@
       background-color: #f8f8f8;
       color: #333;
     }
-
     header {
-      background: #781214;
-      color: white;
+      background: #000;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 10px 20px;
+      padding: 10px 30px;
     }
-
     header img {
-      height: 60px;
+      height: 100px;
     }
-
     nav {
       display: flex;
       align-items: center;
-      gap: 15px;
+      gap: 20px;
     }
-
     nav a {
       color: white;
       text-decoration: none;
       font-weight: bold;
+      font-size: 18px;
     }
-
     #carrito {
       background: transparent;
       border: none;
-      font-size: 24px;
+      font-size: 28px;
       color: white;
       cursor: pointer;
       position: relative;
     }
-
     #carrito span {
       position: absolute;
       top: -10px;
       right: -10px;
       background: white;
-      color: #781214;
+      color: #000;
       font-size: 12px;
       padding: 2px 6px;
       border-radius: 50%;
       font-weight: bold;
     }
-
     .banner {
       background: #eaeaea;
-      padding: 50px 20px;
+      padding: 40px;
       text-align: center;
     }
-
     .banner h1 {
-      color: #781214;
-      font-size: 32px;
+      color: #000;
+      font-size: 36px;
     }
-
     .productos {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 20px;
-      padding: 30px 20px;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 30px;
+      padding: 40px;
     }
-
     .producto {
       background: #fff;
       border: 1px solid #ddd;
-      padding: 10px;
+      border-radius: 12px;
+      overflow: hidden;
       text-align: center;
-      border-radius: 10px;
       box-shadow: 0 0 8px rgba(0,0,0,0.05);
+      transition: 0.3s;
     }
-
+    .producto:hover {
+      transform: translateY(-5px);
+    }
     .producto img {
       width: 100%;
-      height: 200px;
+      height: 300px;
       object-fit: cover;
-      border-radius: 5px;
     }
-
+    .producto h3 {
+      margin: 10px 0 5px 0;
+      font-size: 20px;
+    }
+    .producto p {
+      margin: 0;
+      font-size: 16px;
+      color: #555;
+    }
+    .tallas {
+      margin: 10px 0;
+      font-size: 14px;
+      color: #666;
+    }
     .producto button {
-      background: #781214;
+      background: #000;
       color: white;
       border: none;
-      padding: 8px 15px;
-      margin-top: 10px;
+      padding: 10px 20px;
+      margin-bottom: 15px;
       cursor: pointer;
+      font-size: 16px;
       border-radius: 5px;
     }
-
     #carritoModal {
       display: none;
       position: fixed;
-      top: 80px;
+      top: 100px;
       right: 20px;
       width: 300px;
       max-height: 400px;
       overflow-y: auto;
       background: white;
-      border: 2px solid #781214;
+      border: 2px solid #000;
       padding: 20px;
       border-radius: 10px;
       z-index: 1000;
     }
-
     .item-carrito {
       border-bottom: 1px solid #ddd;
       margin-bottom: 10px;
     }
-
     .eliminar {
       color: red;
       cursor: pointer;
       font-size: 14px;
     }
-
-    .whatsapp {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #25d366;
-      color: white;
-      padding: 10px 15px;
-      border-radius: 50px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
     footer {
       background: #222;
       color: white;
       text-align: center;
-      padding: 10px;
+      padding: 20px;
       margin-top: 50px;
     }
   </style>
@@ -162,37 +152,36 @@
     </nav>
   </header>
 
-  <div id="carritoModal"></div>
-
   <div class="banner">
-    <h1>Bienvenido a Demin Jeans Collection</h1>
-    <p>Explora lo mejor en moda para dama y caballero</p>
+    <h1>¡Bienvenido a Demin Jeans Collection!</h1>
+    <p>Explora nuestra colección de moda para dama y caballero</p>
   </div>
 
   <section class="productos">
     <div class="producto">
-      <img src="https://via.placeholder.com/300x200" alt="Producto">
+      <img src="https://images.unsplash.com/photo-1600180758890-3c953de31884?w=400" alt="Jean Sherman Morgan">
       <h3>Jean Sherman Morgan</h3>
       <p>$299</p>
+      <div class="tallas">Tallas: 30, 32, 34, 36</div>
       <button onclick="agregarAlCarrito('Jean Sherman Morgan', 299)">Agregar al carrito</button>
     </div>
     <div class="producto">
-      <img src="https://via.placeholder.com/300x200" alt="Producto">
+      <img src="https://images.unsplash.com/photo-1629243751467-cb500a5637c9?w=400" alt="Jean Origo Caballero">
       <h3>Jean Origo Caballero</h3>
       <p>$329</p>
+      <div class="tallas">Tallas: 28, 30, 32, 34</div>
       <button onclick="agregarAlCarrito('Jean Origo Caballero', 329)">Agregar al carrito</button>
     </div>
     <div class="producto">
-      <img src="https://via.placeholder.com/300x200" alt="Producto">
+      <img src="https://images.unsplash.com/photo-1622641401385-6c6d99cc0cf7?w=400" alt="Jean Polo Dama">
       <h3>Jean Polo Dama</h3>
       <p>$289</p>
+      <div class="tallas">Tallas: 26, 28, 30, 32</div>
       <button onclick="agregarAlCarrito('Jean Polo Dama', 289)">Agregar al carrito</button>
     </div>
   </section>
 
-  <a class="whatsapp" href="https://api.whatsapp.com/send?phone=521XXXXXXXXXX" target="_blank">
-    💬 WhatsApp
-  </a>
+  <div id="carritoModal"></div>
 
   <footer>
     <p>© 2025 Demin Jeans Collection - Todos los derechos reservados.</p>
@@ -200,8 +189,8 @@
 
   <script>
     let carrito = [];
-    const carritoModal = document.getElementById("carritoModal");
     const cantidad = document.getElementById("cantidad");
+    const carritoModal = document.getElementById("carritoModal");
 
     function agregarAlCarrito(nombre, precio) {
       carrito.push({ nombre, precio });
